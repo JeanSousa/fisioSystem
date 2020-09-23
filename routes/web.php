@@ -19,8 +19,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::prefix('system/')->name('system.')->namespace('System')->group(function () {
 
 Route::get('/patients', 'PatientController@index')->name('patients.index');
 
-
+});

@@ -1,11 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\System;
 
+use App\Http\Controllers\Controller;
+use App\Services\PatientService;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
+
+    private $patientService;
+
+     /**
+    * Construtor
+    */
+    public function __construct(PatientService $patientService)
+    {
+        $this->patientService = $patientService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +26,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-       $patients = \App\Models\Patient::all();
+       $patients = $this->patientService->findAllPatients();
 
        return view('app.patients.index', compact('patients'));
     }
