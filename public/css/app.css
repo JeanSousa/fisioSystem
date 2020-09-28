@@ -2690,8 +2690,8 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #ffffff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  background-color: #20c997 !important;
+  border-color: #20c997 !important;
   box-shadow: none;
 }
 
@@ -2766,8 +2766,8 @@ fieldset:disabled a.btn {
 
 .btn-danger {
   color: #ffffff;
-  background-color: #dc3545;
-  border-color: #dc3545;
+  background-color: #b61928 !important;
+  border-color: #b61928 !important;
   box-shadow: none;
 }
 
@@ -10558,7 +10558,7 @@ body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .side
 }
 
 .layout-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
-  background-color: #343a40;
+  background-color: #090a0a;
 }
 
 .layout-navbar-fixed .wrapper .sidebar-light-primary .brand-link:not([class*="navbar"]) {
@@ -11733,6 +11733,9 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   border: 0 !important;
   color: #343a40;
 }
+
+
+
 
 .brand-link {
   display: block;
@@ -20352,8 +20355,9 @@ html.maximized-card {
 .profile-user-img {
   border: 3px solid #adb5bd;
   margin: 0 auto;
+  margin-left: 5%;
   padding: 3px;
-  width: 100px;
+  width: 150px;
 }
 
 .profile-username {

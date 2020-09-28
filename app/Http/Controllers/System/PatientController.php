@@ -52,6 +52,8 @@ class PatientController extends Controller
     {
         $data = $request->all();
 
+        $request->hasFile('photo') ? $data = $this->uploadImage($data, $request) : null;
+
         $this->patientService->createPatientByUser($data);
 
         return redirect(route('system.patients.index'));
@@ -76,7 +78,9 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $patient = $this->patientService->findPatientById($id);
+
+        return view('app.patients.edit', compact('patient'));
     }
 
     /**
@@ -88,7 +92,13 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $request->hasFile('photo') ? $data = $this->uploadImage($data, $request) : null;
+
+        $this->patientService->updatePatient($data, $id);
+
+        return redirect(route('system.patients.index'));
     }
 
     /**
@@ -98,7 +108,19 @@ class PatientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {  
+        $this->patientService->deletePatient($id);
+
+        return redirect(route('system.patients.index'));
+    }
+
+
+    private function uploadImage($data, $request)
     {
-        //
+        $photo = $request->file('photo');
+
+        $data['photo'] = $photo->store('patients', 'public');
+
+        return $data;
     }
 }

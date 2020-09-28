@@ -1,3 +1,4 @@
+
   <div class="row">
       <div class="form-group col-md-6" >
         <label>Nome</label>
@@ -23,7 +24,7 @@
   <div class="row">
       <div class="form-group col-md-6">
         <label>Foto Paciente</label>
-        <input type="text" class="form-control" name="photo" placeholder="Foto">
+        <input type="file" class="form-control" name="photo">
       </div>
       <div class="form-group col-md-6">
         <label>Data Nascimento</label>

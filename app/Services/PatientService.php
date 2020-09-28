@@ -24,6 +24,19 @@ class PatientService
     }
 
 
+    public function findPatientById($id)
+    {
+        try{
+            $patient = $this->patientRepository->find($id);
+    
+            return $patient;
+            
+        }catch(\Exception $e){
+            return $e->getMessage();
+        } 
+    }
+
+
     public function createPatientByUser($data)
     {
         $user = auth()->user();
@@ -40,6 +53,33 @@ class PatientService
 
      
     }
+
+
+    public function updatePatient($data, $idPatient)
+    {
+        try{
+            $patient = $this->patientRepository->update($data, $idPatient);
+
+            return $patient;
+            
+        }catch(\Exception $e){
+            return $e->getMessage();
+        } 
+
+    }
+
+
+    public function deletePatient($idPatient)
+    {
+        try{
+            $this->patientRepository->delete($idPatient);
+       
+        }catch(\Exception $e){
+            return $e->getMessage();
+        } 
+    }    
+
+
 
 
 }

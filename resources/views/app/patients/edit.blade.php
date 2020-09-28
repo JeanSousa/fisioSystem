@@ -10,8 +10,8 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{route('system.patients.index')}}">Listar Pacientes</a></li>
-                <li class="breadcrumb-item active">Cadastro de pacientes</li>
+              <li class="breadcrumb-item"><a href="{{route('system.patients.index')}}">Listar Pacientes</a></li>
+                <li class="breadcrumb-item active">Editar Paciente</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -26,15 +26,17 @@
             <!-- general form elements -->
             <div class="card card-teal">
               <div class="card-header">
-                <h3 class="card-title">Cadastro de pacientes</h3>
+                <h3 class="card-title">Edição de pacientes</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-            <form role="form" method="post" action="{{route('system.patients.store')}}"
-            enctype="multipart/form-data">
+            <form role="form" method="post" 
+              action="{{route('system.patients.update', $patient->id)}}"
+              enctype="multipart/form-data">
                 @csrf
+                @method('put')
                 <div class="card-body">
-                 @include('app.patients.create_fields')
+                 @include('app.patients.edit_fields')
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">

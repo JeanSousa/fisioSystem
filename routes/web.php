@@ -24,12 +24,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::prefix('system/')->name('system.')->namespace('System')->group(function () {
+Route::prefix('system')->name('system.')->namespace('System')->group(function () {
 
-  Route::get('/patients', 'PatientController@index')->name('patients.index');
-
-  Route::get('/patients/create', 'PatientController@create')->name('patients.create');
-
-  Route::post('/patients/store', 'PatientController@store')->name('patients.store');
+   Route::resource('patients', 'PatientController');
 
 });
