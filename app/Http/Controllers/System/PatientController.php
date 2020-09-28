@@ -17,6 +17,7 @@ class PatientController extends Controller
     public function __construct(PatientService $patientService)
     {
         $this->patientService = $patientService;
+
     }
 
     /**
@@ -26,7 +27,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-       $patients = $this->patientService->findAllPatients();
+       $patients = $this->patientService->findAllPatients(auth()->user()->id);
 
        return view('app.patients.index', compact('patients'));
     }
@@ -38,8 +39,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-       
-       //
+        return view('app.patients.create');
     }
 
     /**
@@ -50,7 +50,11 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-         //
+        $data = $request->all();
+
+        $this->patientService->createPatientByUser($data);
+
+        return redirect(route('system.patients.index'));
     }
 
     /**
