@@ -4,18 +4,20 @@ namespace App\Services;
 
 use App\Repositories\Contracts\PatientRepository;
 
+
 class PatientService
 {
     public function __construct(PatientRepository $patientRepository)
     {
         $this->patientRepository = $patientRepository;
+
     }
 
     public function findAllPatients($userId)
     {
         try{
             $patients = $this->patientRepository->where('user_id', $userId)->get();
-    
+
             return $patients;
             
         }catch(\Exception $e){
@@ -41,7 +43,9 @@ class PatientService
     {
         $user = auth()->user();
 
-        $user->patient()->create($data);
+        $patient =  $user->patient()->create($data);
+
+        $patient->phone()->create($data);
 
        // $auth = new stdClass();
 

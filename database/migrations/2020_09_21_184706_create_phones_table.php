@@ -19,6 +19,7 @@ class CreatePhonesTable extends Migration
             $table->string('phone',30);
             $table->string('mobile_phone',30);
             $table->timestamps();
+            $table->softDeletes('deleted_at', 0);
         });
     }
 

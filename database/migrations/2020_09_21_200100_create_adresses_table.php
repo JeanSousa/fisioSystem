@@ -23,6 +23,7 @@ class CreateAdressesTable extends Migration
             $table->string('city', 60);
             $table->string('state',60);
             $table->timestamps();
+            $table->softDeletes('deleted_at', 0);
         });
     }
 

@@ -23,6 +23,7 @@ class CreatePatientsTable extends Migration
             $table->string('photo')->nullable();
             $table->date('birth_date');
             $table->timestamps();
+            $table->softDeletes('deleted_at', 0);
         });
     }
 

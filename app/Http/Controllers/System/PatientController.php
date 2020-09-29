@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestPatient;
 use App\Services\PatientService;
+use App\Services\PhoneService;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -11,12 +13,17 @@ class PatientController extends Controller
 
     private $patientService;
 
+    private $phoneService;
+
+
      /**
     * Construtor
     */
-    public function __construct(PatientService $patientService)
+    public function __construct(PatientService $patientService, PhoneService $phoneService)
     {
         $this->patientService = $patientService;
+
+        $this->phoneService = $phoneService;
 
     }
 
@@ -48,8 +55,9 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(RequestPatient $request)
+    { 
+        
         $data = $request->all();
 
         $request->hasFile('photo') ? $data = $this->uploadImage($data, $request) : null;
@@ -79,6 +87,13 @@ class PatientController extends Controller
     public function edit($id)
     {
         $patient = $this->patientService->findPatientById($id);
+
+        $phones = $this->phoneService->findPhoneByPacient($patient->id);
+         
+        foreach($phones as $p){
+            $patient->phone = $p['phone'];
+            $patient->mobile_phone = $p['mobile_phone'];
+        }
 
         return view('app.patients.edit', compact('patient'));
     }
