@@ -113,6 +113,8 @@ class PatientController extends Controller
 
         $this->patientService->updatePatient($data, $id);
 
+        $this->phoneService->updatePhoneByPatient($data, $id);
+
         return redirect(route('system.patients.index'));
     }
 

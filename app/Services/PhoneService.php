@@ -24,4 +24,19 @@ class PhoneService
         } 
     }
 
+
+    public function updatePhoneByPatient($data, $idPatient)
+    {
+        try{
+
+            $phone = $this->phoneRepository->findByField('patient_id',$idPatient);
+
+            $this->phoneRepository->update($data, $phone[0]->id);
+            
+        }catch(\Exception $e){
+            return $e->getMessage();
+        } 
+
+    }
+
 }
