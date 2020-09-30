@@ -35,7 +35,12 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill"
-                                    href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile"
+                                    href="#custom-tabs-address" role="tab" aria-controls="custom-tabs-one-profile"
+                                    aria-selected="false">Endereço</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill"
+                                    href="#custom-tabs-phones" role="tab" aria-controls="custom-tabs-one-profile"
                                     aria-selected="false">Telefones</a>
                             </li>
                         </ul>
@@ -52,9 +57,14 @@
                                     @include('app.patients.edit_fields')
                                 </div>
 
-                                <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel"
+                                <div class="tab-pane fade" id="custom-tabs-address" role="tabpanel"
                                     aria-labelledby="custom-tabs-one-profile-tab">
-                                    @include('app.patients.edit_fields_phone')
+                                    @include('app.address.edit_fields')
+                                </div>
+
+                                <div class="tab-pane fade" id="custom-tabs-phones" role="tabpanel"
+                                    aria-labelledby="custom-tabs-one-profile-tab">
+                                    @include('app.phone.edit_fields')
                                 </div>
 
                             </div>

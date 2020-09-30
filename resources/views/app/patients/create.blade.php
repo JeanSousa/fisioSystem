@@ -57,7 +57,10 @@
               <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Dados Pessoais</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Telefones</a>
+              <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-adresses" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Endereços</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-phones" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Telefones</a>
             </li>
           </ul>
         </div>
@@ -67,11 +70,15 @@
           <div class="tab-content" id="custom-tabs-one-tabContent">
                 @csrf
             <div class="tab-pane fade active show" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
-                   @include('app.patients.create_fields')
+              @include('app.patients.create_fields')
             </div>
 
-            <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-                @include('app.patients.create_fields_phone')
+            <div class="tab-pane fade" id="custom-tabs-one-adresses" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+              @include('app.address.create_fields')  
+            </div>
+
+            <div class="tab-pane fade" id="custom-tabs-one-phones" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+              @include('app.phone.create_fields')
             </div>
 
           </div>

@@ -30,7 +30,7 @@
             <tbody> 
             @foreach ($patients as $patient)
             <tr role="row" class="odd">
-              <td>{{$patient->name}}</td>
+              <td>{{ucwords($patient->name)}}</td>
               <td>{{$patient->cpf}}</td>
               <td>{{$patient->birth_date}}</td>
               <td>{{$patient->email}}</td>

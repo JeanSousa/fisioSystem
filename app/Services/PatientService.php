@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\Contracts\PatientRepository;
-
+use App\Services\ServiceResponse\ServiceResponse;
 
 class PatientService
 {
@@ -47,6 +47,8 @@ class PatientService
 
         $patient->phone()->create($data);
 
+        $patient->address()->create($data);
+
        // $auth = new stdClass();
 
        // $auth->name  = Auth::user()->name;
@@ -64,7 +66,11 @@ class PatientService
         try{
             $patient = $this->patientRepository->update($data, $idPatient);
 
-            return $patient;
+            return new ServiceResponse(
+                true,
+                'Paciente Atualizado com Sucesso !',
+                $patient
+            );
             
         }catch(\Exception $e){
             return $e->getMessage();

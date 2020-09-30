@@ -4,9 +4,12 @@ namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RequestPatient;
+use App\Services\AddressService;
 use App\Services\PatientService;
 use App\Services\PhoneService;
 use Illuminate\Http\Request;
+
+
 
 class PatientController extends Controller
 {
@@ -15,15 +18,25 @@ class PatientController extends Controller
 
     private $phoneService;
 
+    private $addressService;
 
-     /**
-    * Construtor
-    */
-    public function __construct(PatientService $patientService, PhoneService $phoneService)
-    {
+
+    /**
+     * Construtor
+     */
+    public function __construct(
+        PatientService $patientService, 
+        PhoneService $phoneService,
+        AddressService $addressService
+       
+    ) {
         $this->patientService = $patientService;
 
         $this->phoneService = $phoneService;
+
+        $this->addressService = $addressService;
+
+        $this->middleware('verifyPatientBelongsUser')->only('edit');
 
     }
 
@@ -34,9 +47,9 @@ class PatientController extends Controller
      */
     public function index()
     {
-       $patients = $this->patientService->findAllPatients(auth()->user()->id);
+        $patients = $this->patientService->findAllPatients(auth()->user()->id);
 
-       return view('app.patients.index', compact('patients'));
+        return view('app.patients.index', compact('patients'));
     }
 
     /**
@@ -56,8 +69,8 @@ class PatientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(RequestPatient $request)
-    { 
-        
+    {  
+
         $data = $request->all();
 
         $request->hasFile('photo') ? $data = $this->uploadImage($data, $request) : null;
@@ -89,11 +102,24 @@ class PatientController extends Controller
         $patient = $this->patientService->findPatientById($id);
 
         $phones = $this->phoneService->findPhoneByPacient($patient->id);
-         
-        foreach($phones as $p){
+
+        $address = $this->addressService->findAddressByPacient($patient->id);
+
+        foreach ($phones as $p) {
             $patient->phone = $p['phone'];
             $patient->mobile_phone = $p['mobile_phone'];
         }
+
+        foreach ($address as $a) {
+            $patient->street = $a['street'];
+            $patient->number = $a['number'];
+            $patient->cep = $a['cep'];
+            $patient->neighborhood = $a['neighborhood'];
+            $patient->city = $a['city'];
+            $patient->state = $a['state'];
+        }
+
+
 
         return view('app.patients.edit', compact('patient'));
     }
@@ -111,11 +137,15 @@ class PatientController extends Controller
 
         $request->hasFile('photo') ? $data = $this->uploadImage($data, $request) : null;
 
-        $this->patientService->updatePatient($data, $id);
+        $patient = $this->patientService->updatePatient($data, $id);
 
         $this->phoneService->updatePhoneByPatient($data, $id);
 
-        return redirect(route('system.patients.index'));
+        $this->addressService->updateAddressByPatient($data, $id);
+
+        flash($patient->message)->success();
+
+        return redirect(url()->previous());
     }
 
     /**
@@ -125,7 +155,7 @@ class PatientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {  
+    {
         $this->patientService->deletePatient($id);
 
         return redirect(route('system.patients.index'));

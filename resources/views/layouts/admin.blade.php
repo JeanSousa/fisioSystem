@@ -183,7 +183,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-
+      <div class="float-right">
+        @include('flash::message')
+      </div>
       <!-- Main content -->
       <div class="content">
         <div class="container-fluid">
@@ -221,6 +223,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- jQuery -->
   <script src="/js/app.js"></script>
+  <script>
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+  </script>
 
   
   
