@@ -13,13 +13,25 @@
 <div class="row">
     <div class="form-group col-md-6">
         <label>Nome</label>
-        <input type="text" class="form-control" name="name" 
-         value="{{ $patient->name }}" placeholder="Nome">
+        <input type="text" name="name" 
+         class="form-control @error('name') is-invalid @enderror" 
+         value="{{$patient->name}}" placeholder="Nome">
+         @error('name')
+          <div class="invalid-feedback">
+            {{$message}}
+          </div>
+         @enderror
     </div>
     <div class="form-group col-md-6">
         <label>Cpf</label>
-        <input type="text" class="form-control" name="cpf" 
+        <input type="text" name="cpf" 
+        class="form-control @error('cpf') is-invalid @enderror" 
          value="{{ $patient->cpf }}" placeholder="CPF">
+         @error('cpf')
+         <div class="invalid-feedback">
+             {{$message}}
+         </div>
+         @enderror
     </div>
 </div>
 
@@ -45,6 +57,12 @@
     <div class="form-group col-md-6">
         <label>Data Nascimento</label>
         <input type="date" name="birth_date" 
-         value="{{ $patient->birth_date }}" class="form-control">
+         class="form-control @error('birth_date') is-invalid @enderror"
+         value="{{ $patient->birth_date }}">
+         @error('birth_date')
+           <div class="invalid-feedback">
+               {{$message}}
+           </div>
+         @enderror
     </div>
 </div>

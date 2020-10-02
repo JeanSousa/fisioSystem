@@ -54,3 +54,25 @@
       </div>
   </div>
 
+
+  <script>
+    $(document).on('blur','.cep', function(){
+    const numAddress = this.id;
+    if(this.value){
+      $.ajax({
+        url: 'http://api.postmon.com.br/v1/cep/'+this.value,
+        dataType:'json',
+        crossDomain: true,
+        statusCode:{
+          200:function(data){
+            $(`#street${numAddress}`).val(data.logradouro);
+            $(`#neighborhood${numAddress}`).val(data.bairro);
+            $(`#city${numAddress}`).val(data.cidade);
+            $(`#state${numAddress}`).val(data.estado);
+          }
+        }
+      });
+    }
+    return false
+  });
+  </script>

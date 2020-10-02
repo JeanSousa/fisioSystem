@@ -15,7 +15,7 @@ class AddressService
     {
         try{
             
-            $address = $this->addressRepository->where('patient_id', $userId)->get();
+            $address = $this->addressRepository->where('patient_id', $userId)->first();
 
             return $address;
             

@@ -105,21 +105,14 @@ class PatientController extends Controller
 
         $address = $this->addressService->findAddressByPacient($patient->id);
 
-        foreach ($phones as $p) {
-            $patient->phone = $p['phone'];
-            $patient->mobile_phone = $p['mobile_phone'];
-        }
-
-        foreach ($address as $a) {
-            $patient->street = $a['street'];
-            $patient->number = $a['number'];
-            $patient->cep = $a['cep'];
-            $patient->neighborhood = $a['neighborhood'];
-            $patient->city = $a['city'];
-            $patient->state = $a['state'];
-        }
-
-
+        $patient->phone = $phones->phone;
+        $patient->mobile_phone = $phones->mobile_phone;
+        $patient->street = $address->street;
+        $patient->number = $address->number;
+        $patient->cep = $address->cep;
+        $patient->neighborhood = $address->neighborhood;
+        $patient->city = $address->city;
+        $patient->state = $address->state;
 
         return view('app.patients.edit', compact('patient'));
     }
@@ -131,7 +124,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestPatient $request, $id)
     {
         $data = $request->all();
 

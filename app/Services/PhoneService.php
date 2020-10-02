@@ -15,7 +15,7 @@ class PhoneService
     {
         try{
             
-            $phones = $this->phoneRepository->where('patient_id', $userId)->get();
+            $phones = $this->phoneRepository->where('patient_id', $userId)->first();
 
             return $phones;
             
