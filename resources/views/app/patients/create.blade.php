@@ -91,7 +91,7 @@
           </div>
         </div>
       </div>
-      
+    
       <script>
         document.getElementById("submit").addEventListener("click", submitForm);
       
@@ -99,6 +99,8 @@
           document.getElementById("patient").submit();
         }
       </script>
+
+
      
 @endsection
 
