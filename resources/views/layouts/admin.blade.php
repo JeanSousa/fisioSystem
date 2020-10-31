@@ -222,33 +222,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
-  <script src="/js/app.js"></script>
-  <script src="/js/jquery.js"></script>
-  <script>
-    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
-  </script>
-
-
-<script>
-  $(document).on("blur", ".cep", function(){
-    if(this.value){
-      $.ajax({
-        url: 'http://api.postmon.com.br/v1/cep/'+this.value,
-        dataType:'json',
-        crossDomain: true,
-        statusCode:{
-          200:function(data){
-            $('.street').val(data.logradouro);
-            $('.neighborhood').val(data.bairro);
-            $('.city').val(data.cidade);
-            $('.state').val(data.estado);
-          }
-        }
-      });
-    }
-    return false
-  })
-</script>
+  <script src="/js/app.js"></script> 
+  <script src="/js/scripts.js"></script>
+ 
 
 </body>
 
