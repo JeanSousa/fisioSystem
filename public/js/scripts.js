@@ -1,2 +1,0 @@
-$("div.alert").not(".alert-important").delay(3e3).fadeOut(350);
-$(document).on("blur",".cep",function(){return this.value&&$.ajax({url:"http://api.postmon.com.br/v1/cep/"+this.value,dataType:"json",crossDomain:!0,statusCode:{200:function(o){$(".street").val(o.logradouro),$(".neighborhood").val(o.bairro),$(".city").val(o.cidade),$(".state").val(o.estado)}}}),!1});
