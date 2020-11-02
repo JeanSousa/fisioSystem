@@ -25,7 +25,7 @@
     <div class="form-group col-md-6">
         <label>Cpf</label>
         <input type="text" name="cpf" 
-        class="form-control @error('cpf') is-invalid @enderror" 
+        class="form-control cpf @error('cpf') is-invalid @enderror" 
          value="{{ $patient->cpf }}" placeholder="CPF">
          @error('cpf')
          <div class="invalid-feedback">
@@ -38,7 +38,7 @@
 <div class="row">
     <div class="form-group col-md-6">
         <label>Rg</label>
-        <input type="text" class="form-control" name="rg" 
+        <input type="text" class="form-control rg" name="rg" 
          value="{{ $patient->rg }}" placeholder="RG">
     </div>
     <div class="form-group col-md-6">

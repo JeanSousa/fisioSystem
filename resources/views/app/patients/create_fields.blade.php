@@ -15,7 +15,7 @@
       <div class="form-group col-md-6">
         <label>Cpf</label>
         <input type="text" name="cpf" placeholder="CPF"
-        class="form-control @error('cpf') is-invalid @enderror"
+        class="form-control cpf @error('cpf') is-invalid @enderror"
         value="{{old('cpf')}}">
         @error('cpf')
         <div class="invalid-feedback">
@@ -28,7 +28,7 @@
   <div class="row">
       <div class="form-group col-md-6">
         <label>Rg</label>
-        <input type="text" class="form-control" name="rg" placeholder="RG">
+        <input type="text" class="form-control rg" name="rg" placeholder="RG">
       </div>
       <div class="form-group col-md-6">
         <label>Email</label>
