@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,18 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/test', function(){
+     return ['msg' => 'minha primeira API'];
+});
+
+Route::namespace('Api')->group(function () {
+
+    Route::resource('/patients', 'PatientController')->middleware('auth.basic');
+
+    Route::resource('users', 'UserController');
+ 
+});
+
+

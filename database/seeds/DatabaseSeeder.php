@@ -15,17 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+         $this->call(UsersTableSeeder::class);
 
-        factory(User::class, 10)->create()->each(function ($user) {
+        // factory(Users::class, 10)->create()->each(function ($user) {
 
-           $patient = $user->patient()->save(factory(Patient::class)->make());
+        //    $patient = $user->patient()->save(factory(Patient::class)->make());
 
-           $patient->phone()->save(factory(Phone::class)->make());
+        //    $patient->phone()->save(factory(Phone::class)->make());
 
-           $patient->address()->save(factory(Address::class)->make());
+        //    $patient->address()->save(factory(Address::class)->make());
 
-        });
+        // });
        
     
     }
