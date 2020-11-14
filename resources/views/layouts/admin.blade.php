@@ -154,6 +154,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </a>
                 </li>
               </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('system.evolutions.create')}}" class="nav-link">
+                    <i class="nav-icon fas fa-plus"></i>
+                    <p>Cadastrar Evolução</p>
+                  </a>
+                </li>
+              </ul>
             </li>
 
             <li class="nav-item has-treeview">

@@ -24,7 +24,7 @@ class EvolutionController extends Controller
      */
     public function create()
     {
-        //
+       return view('app.evolution.create'); 
     }
 
     /**
