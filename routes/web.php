@@ -28,4 +28,6 @@ Route::prefix('system')->name('system.')->namespace('System')->group(function ()
 
    Route::resource('patients', 'PatientController');
 
+   Route::resource('evolutions', 'EvolutionController');
+
 });

@@ -140,6 +140,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-child"></i>
+                <p>
+                  Evolução
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('system.evolutions.index')}}" class="nav-link">
+                    <i class="nav-icon fas fa-child"></i>
+                    <p>Evolução Diária</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-pen"></i>
                 <p>
                   Prontuários
