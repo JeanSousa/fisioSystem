@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestPatient;
 use App\Http\Resources\PatientCollection;
 use App\Http\Resources\PatientResource;
 use App\Models\Patient;
@@ -45,9 +46,13 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestPatient $request)
     {
-        return response()->json(['message' => __METHOD__]);
+        $data = $request->all();
+
+        $this->patientService->createPatientByUser($data);
+
+        return response()->json(['message' => 'Paciente inserido com sucesso!']);
     }
 
     /**
@@ -89,6 +94,10 @@ class PatientController extends Controller
 
         $this->patientService->updatePatient($data, $id);
 
+        $this->phoneService->updatePhoneByPatient($data, $id);
+
+        $this->addressService->updateAddressByPatient($data, $id);
+
         return response()->json(['message' => 'Paciente atualizado com sucesso']);
     }
 
@@ -100,6 +109,8 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        return response()->json(['message' => __METHOD__]);
+        $this->patientService->deletePatient($id);
+
+        return response()->json(['message' => 'Paciente excluído com sucesso!']);
     }
 }

@@ -25,7 +25,7 @@ class RequestPatient extends FormRequest
     {
         return [
             'name' => 'required',
-            'cpf' => 'required',
+            'cpf' => 'required|cpf',
             'birth_date' => 'required'
         ];
     }
