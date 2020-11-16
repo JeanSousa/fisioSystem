@@ -3,10 +3,22 @@
 namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
+use App\Services\PatientService;
 use Illuminate\Http\Request;
 
 class EvolutionController extends Controller
 {
+    private $patientService;
+
+    /**
+     * Construct
+     */
+    public function __construct(PatientService $patientService)
+    {
+        $this->patientService = $patientService;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +36,9 @@ class EvolutionController extends Controller
      */
     public function create()
     {
-       return view('app.evolution.create'); 
+       $patients = $this->patientService->findAllPatients(auth()->user()->id);
+
+       return view('app.evolution.create', compact('patients')); 
     }
 
     /**
@@ -35,7 +49,7 @@ class EvolutionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
