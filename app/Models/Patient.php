@@ -37,4 +37,9 @@ class Patient extends Model
         return $this->hasMany(Address::class);
     }
 
+    public function evolution()
+    {
+        return $this->hasMany(Evolution::class);
+    }
+
 }

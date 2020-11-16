@@ -4,17 +4,16 @@ namespace App\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\Contracts\PatientRepository;
-use App\Models\Patient;
-
+use App\Repositories\Contracts\EvolutionRepository;
+use App\Models\Evolution;
 
 
 /**
- * Class PatientRepositoryEloquent.
+ * Class EvolutionRepositoryEloquent.
  *
  * @package namespace App\Repositories;
  */
-class PatientRepositoryEloquent extends BaseRepository implements PatientRepository
+class EvolutionRepositoryEloquent extends BaseRepository implements EvolutionRepository
 {
     /**
      * Specify Model class name
@@ -23,7 +22,7 @@ class PatientRepositoryEloquent extends BaseRepository implements PatientReposit
      */
     public function model()
     {
-        return Patient::class;
+        return Evolution::class;
     }
 
     

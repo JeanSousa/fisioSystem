@@ -18,5 +18,31 @@
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
+      <section class="content">
+        <div class="card card-teal">
+            <div class="card-header">
+              <h3 class="card-title">Filtrar Evoluções</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form role="form"  method="post" action="{{route('system.evolutions.filters')}}">
+              @csrf
+              <div class="card-body">
+                 @include('app.evolution.index_filter_fields')
+ 
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-info">Filtrar</button>
+              </div>
+            </form>
+          </div>
+
+          @if($evolutions != '')
+            @include('app.evolution.index_timeline')  
+          @endif
+
+      </section>
      
 @endsection

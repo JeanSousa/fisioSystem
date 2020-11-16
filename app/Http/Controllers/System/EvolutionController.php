@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestEvolution;
+use App\Services\EvolutionService;
 use App\Services\PatientService;
 use Illuminate\Http\Request;
 
@@ -10,12 +12,18 @@ class EvolutionController extends Controller
 {
     private $patientService;
 
+    public $evolutions;
+
     /**
      * Construct
      */
-    public function __construct(PatientService $patientService)
+    public function __construct(
+        PatientService $patientService,
+        EvolutionService $evolutionService
+    )
     {
         $this->patientService = $patientService;
+        $this->evolutionService = $evolutionService;
     }
 
 
@@ -24,9 +32,21 @@ class EvolutionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($evolutions = null)
     {
-        return view('app.evolution.index');
+        $patients = $this->patientService->findAllPatients(auth()->user()->id);
+
+        return view('app.evolution.index', compact('patients', 'evolutions'));
+    }
+
+
+    public function filters(Request $request)
+    {
+        $evolutions = $this->evolutionService
+        ->findEvolutionByPatient($request->patient_id);
+
+        return $this->index($evolutions);
+            
     }
 
     /**
@@ -47,9 +67,14 @@ class EvolutionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestEvolution $request)
     {
-        dd($request->all());
+        $data = $request->all();
+        $evolution = $this->evolutionService->createEvolution($data);
+
+        flash($evolution->message)->success();
+
+        return redirect(url()->previous());
     }
 
     /**
