@@ -40,12 +40,23 @@ class EvolutionService
     }
 
 
-    public function findEvolutionByPatient($id)
+    public function findEvolutionByPatientAndDate($id, $initial_date, $final_date)
     {
         try{
+
+            if(!isset($initial_date)) {
+               $initial_date = '0000-01-01 00:00:00';
+            }
+
+            if(!isset($final_date)) {
+                $final_date = '2099-01-01 00:00:00';
+            }
             
             $evolutions = $this->evolutionRepository
-            ->where('patient_id', $id)->get();
+            ->where('patient_id', $id)
+            ->whereBetween('evolution_date',[$initial_date, $final_date])
+            ->orderByDesc('evolution_date')
+            ->get();
 
             return $evolutions;
             

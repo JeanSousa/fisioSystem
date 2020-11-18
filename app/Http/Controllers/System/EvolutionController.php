@@ -42,8 +42,14 @@ class EvolutionController extends Controller
 
     public function filters(Request $request)
     {
+       
+        
         $evolutions = $this->evolutionService
-        ->findEvolutionByPatient($request->patient_id);
+        ->findEvolutionByPatientAndDate($request->patient_id,
+        $request->initial_date,  $request->final_date);
+
+        $evolutions->patient = $this->patientService
+        ->findPatientById($request->patient_id);
 
         return $this->index($evolutions);
             
