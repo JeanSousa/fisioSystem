@@ -4,6 +4,7 @@ namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RequestEvolution;
+use App\Http\Requests\RequestEvolutionEdit;
 use App\Services\EvolutionService;
 use App\Services\PatientService;
 use Illuminate\Http\Request;
@@ -101,8 +102,13 @@ class EvolutionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $evolution = $this->evolutionService->findEvolutionById($id);
+
+        $evolution->patient = $this->patientService
+        ->findPatientById($evolution->patient_id);
+
+        return view('app.evolution.edit', compact('evolution')); 
     }
 
     /**
@@ -112,9 +118,16 @@ class EvolutionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestEvolutionEdit $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $evolution = $this->evolutionService->updateEvolution($data, $id);
+
+        flash($evolution->message)->success();
+
+        return redirect(route('system.evolutions.index'));
+
     }
 
     /**

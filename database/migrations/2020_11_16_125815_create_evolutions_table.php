@@ -17,10 +17,10 @@ class CreateEvolutionsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('patient_id');
             $table->string('initial_blood_pressure', 10);
-            $table->string('final_blood_pressure', 10);
+            $table->string('final_blood_pressure', 10)->nullable();
             $table->string('o2_saturation', 10);
             $table->dateTime('evolution_date');
-            $table->string('observation');
+            $table->string('observation')->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', 0);
         });

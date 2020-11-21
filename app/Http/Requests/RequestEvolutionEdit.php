@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequestEvolution extends FormRequest
+class RequestEvolutionEdit extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,10 @@ class RequestEvolution extends FormRequest
         return [
             'patient_id' => 'required',
             'initial_blood_pressure' => 'required',
+            'final_blood_pressure'=> 'required',
             'o2_saturation' => 'required',
             'evolution_date'=> 'required',
+            'observation' => 'required'
         ];
     }
 

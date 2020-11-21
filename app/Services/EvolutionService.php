@@ -39,6 +39,19 @@ class EvolutionService
         } 
     }
 
+    public function findEvolutionById($id)
+    {
+        try{
+            $evolution = $this->evolutionRepository->find($id);
+    
+            return $evolution;
+            
+        }catch(\Exception $e){
+            return $e->getMessage();
+        } 
+    }
+
+
 
     public function findEvolutionByPatientAndDate($id, $initial_date, $final_date)
     {
@@ -63,6 +76,25 @@ class EvolutionService
         }catch(\Exception $e){
             return $e->getMessage();
         } 
+    }
+
+
+    public function updateEvolution($data, $idEvolution)
+    {
+        try{
+          
+            $evolution = $this->evolutionRepository->update($data, $idEvolution);
+
+            return new ServiceResponse(
+                true,
+                'Evolução Atualizada com Sucesso !',
+                $evolution
+            );
+            
+        }catch(\Exception $e){
+            return $e->getMessage();
+        } 
+
     }
 
 

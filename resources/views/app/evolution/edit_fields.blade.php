@@ -1,19 +1,19 @@
 <div class="row">
     <div class="form-group col-md-6">
         <label>Paciente</label>   
-        <select name="patient_id" class="form-control" >
-        @foreach ($patients as $patient)
-        <option value="{{$patient->id}}">{{ucwords($patient->name)}}</option>
-        @endforeach
-        </select>
+        <input name="patient_name" class="form-control"
+        value="{{$evolution->patient->name}}" readonly>
     </div>
+
+    <input name="patient_id" class="form-control" type="hidden"
+        value="{{$evolution->patient_id}}" readonly>
 
     <div class="form-group col-md-6">
         <label>Data</label>   
         <input type="date" name="evolution_date" 
-        class="form-control
+        class="form-control 
         @error('evolution_date') is-invalid  @enderror"
-        value="{{old('evolution_date')}}">
+        value="{{$evolution->evolution_date}}">
         @error('evolution_date')
         <div class="invalid-feedback">
           {{$message}}
@@ -28,7 +28,7 @@
       <input type="text" name="initial_blood_pressure" 
       class="form-control 
       @error('initial_blood_pressure') is-invalid  @enderror"
-      value="{{old('initial_blood_pressure')}}">
+      value="{{$evolution->initial_blood_pressure}}">
       @error('initial_blood_pressure')
       <div class="invalid-feedback">
           {{$message}}
@@ -36,7 +36,7 @@
       @enderror
     </div>
 
-    {{-- <div class="form-group col-md-6">
+    <div class="form-group col-md-6">
       <label>PAF (pressão arterial final)</label>
       <input type="text" name="final_blood_pressure" 
       class="form-control
@@ -47,14 +47,16 @@
         {{$message}}
       </div>
       @enderror
-    </div> --}}
+    </div>
+</div>
 
+<div class="row">
     <div class="form-group col-md-6">
       <label>SatO<sub>2</sub> (saturação oxigênio)</label>
       <input type="text" name="o2_saturation" 
       class="form-control
       @error('o2_saturation') is-invalid  @enderror"
-      value="{{old('o2_saturation')}}">
+      value="{{$evolution->o2_saturation}}">
       @error('o2_saturation')
       <div class="invalid-feedback">
         {{$message}}
@@ -63,17 +65,18 @@
     </div>
 </div>
 
-{{-- <div class="row">
+<div class="row">
     <div class="form-group col-md-12">
         <label>Observações do atendimento</label>
         <textarea name="observation" 
         class="form-control
         @error('observation') is-invalid  @enderror">
+        {{old('observation')}}
         </textarea>
         @error('observation')
         <div class="invalid-feedback">
-          {{$message}}
+        {{$message}}
         </div>
         @enderror
     </div>
-</div> --}}
+</div>
