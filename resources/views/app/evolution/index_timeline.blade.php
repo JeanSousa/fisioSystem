@@ -59,7 +59,8 @@
             <a  href="{{route('system.evolutions.edit', $evolution->id)}}" 
              class="btn btn-primary btn-sm">Finalizar Atendimento</a>
           @else 
-            <a class="btn btn-primary btn-sm">Editar Atendimento</a>
+            <a href="{{route('system.evolutions.edit', $evolution->id)}}" 
+            class="btn btn-primary btn-sm">Editar Atendimento</a>
           @endif
         </div>
       </div>

@@ -24,7 +24,7 @@ Route::get('/test', function(){
      return ['msg' => 'minha primeira API'];
 });
 
-Route::namespace('Api')->group(function () {
+Route::namespace('Api')->prefix('v1')->group(function () {
 
     Route::resource('/patients', 'PatientController')->middleware('auth.basic');
 

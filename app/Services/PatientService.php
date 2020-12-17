@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Api\ApiMessages;
 use App\Repositories\Contracts\PatientRepository;
 use App\Services\ServiceResponse\ServiceResponse;
 
@@ -10,32 +11,30 @@ class PatientService
     public function __construct(PatientRepository $patientRepository)
     {
         $this->patientRepository = $patientRepository;
-
     }
 
     public function findAllPatients($userId)
     {
-        try{
+        try {
             $patients = $this->patientRepository->where('user_id', $userId)->get();
 
             return $patients;
-            
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
+
             return $e->getMessage();
-        } 
+        }
     }
 
 
     public function findPatientById($id)
     {
-        try{
+        try {
             $patient = $this->patientRepository->find($id);
-    
+
             return $patient;
-            
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return $e->getMessage();
-        } 
+        }
     }
 
 
@@ -49,21 +48,21 @@ class PatientService
 
         $patient->address()->create($data);
 
-       // $auth = new stdClass();
+        // $auth = new stdClass();
 
-       // $auth->name  = Auth::user()->name;
+        // $auth->name  = Auth::user()->name;
 
-       // $auth->email = Auth::user()->email;
+        // $auth->email = Auth::user()->email;
 
-      //  SendEmailJob::dispatch($contact, $auth)->delay(now()->addSeconds('15'));
+        //  SendEmailJob::dispatch($contact, $auth)->delay(now()->addSeconds('15'));
 
-     
+
     }
 
 
     public function updatePatient($data, $idPatient)
     {
-        try{
+        try {
             $patient = $this->patientRepository->update($data, $idPatient);
 
             return new ServiceResponse(
@@ -71,25 +70,18 @@ class PatientService
                 'Paciente Atualizado com Sucesso !',
                 $patient
             );
-            
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return $e->getMessage();
-        } 
-
+        }
     }
 
 
     public function deletePatient($idPatient)
     {
-        try{
+        try {
             $this->patientRepository->delete($idPatient);
-       
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return $e->getMessage();
-        } 
-    }    
-
-
-
-
+        }
+    }
 }

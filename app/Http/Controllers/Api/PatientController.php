@@ -11,6 +11,7 @@ use App\Services\AddressService;
 use App\Services\PatientService;
 use App\Services\PhoneService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PatientController extends Controller
 {
@@ -36,7 +37,7 @@ class PatientController extends Controller
     public function index()
     {
         $patients = $this->patientService->findAllPatients(auth()->user()->id);
-
+            
         return new PatientCollection($patients);
     }
 
@@ -49,6 +50,11 @@ class PatientController extends Controller
     public function store(RequestPatient $request)
     {
         $data = $request->all();
+
+        if ($request->hasFile('photo')) {
+          $path = Storage::disk('public')->put('patients', $data['photo']);
+          $data['photo'] = $path;
+        }
 
         $this->patientService->createPatientByUser($data);
 

@@ -41,7 +41,9 @@
       <input type="text" name="final_blood_pressure" 
       class="form-control
       @error('final_blood_pressure') is-invalid  @enderror"
-      value="{{old('final_blood_pressure')}}" >
+      value="{{isset($evolution->final_blood_pressure) ?
+      $evolution->final_blood_pressure :
+      old('final_blood_pressure')}}" >
       @error('final_blood_pressure')
       <div class="invalid-feedback">
         {{$message}}
@@ -71,7 +73,9 @@
         <textarea name="observation" 
         class="form-control
         @error('observation') is-invalid  @enderror">
-        {{old('observation')}}
+        {{isset($evolution->observation) ? 
+        $evolution->observation :
+        old('observation')}}
         </textarea>
         @error('observation')
         <div class="invalid-feedback">
