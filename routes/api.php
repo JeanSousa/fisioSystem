@@ -26,6 +26,8 @@ Route::get('/test', function(){
 
 Route::namespace('Api')->prefix('v1')->group(function () {
 
+    Route::post('login', 'Auth\LoginJwtController@login')->name('login');
+
     Route::resource('/patients', 'PatientController')->middleware('auth.basic');
 
     Route::resource('users', 'UserController');
