@@ -29,7 +29,9 @@ class PatientService
     public function findPatientById($id)
     {
         try {
-            $patient = $this->patientRepository->find($id);
+            $patient = $this->patientRepository
+            ->with('address')->with('phone')
+            ->find($id);
 
             return $patient;
         } catch (\Exception $e) {

@@ -37,16 +37,35 @@
             <!-- form start -->
             <form role="form"  method="post" action="{{route('system.evolutions.filters')}}">
               @csrf
+              <input type="hidden" id="patient_report" value="">
               <div class="card-body">
                  @include('app.evolution.index_filter_fields')
               </div>
 
           </div>
+ 
+            
+              <div class="card-footer" style="display: block;">
+                  <button type="submit" class="btn btn-info">Filtrar</button>
+                </form>
 
-          <div class="card-footer" style="display: block;">
-              <button type="submit" class="btn btn-info">Filtrar</button>
-          </div>
-            </form>
+                <form action="{{route('system.evolutions.report')}}" method="POST">
+                  @csrf
+                     <input type="hidden" name="report_patient_id" 
+                      id="report_patient_id" value="">
+
+                     <input type="hidden" name="report_initial_date" 
+                      id="report_initial_date" value="">
+
+                     <input type="hidden" name="report_final_date" 
+                      id="report_final_date" value="">
+
+                     <button type="submit" class="btn btn-danger" style="margin-top: 10px">
+                       <i class="fa fa-file-pdf"></i>
+                       Exportar
+                     </button>
+                </form>
+              </div>
         </div>
 
           @if($evolutions != '' && count($evolutions) > 0)

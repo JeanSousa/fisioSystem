@@ -30,6 +30,9 @@ Route::prefix('system')->name('system.')->namespace('System')->group(function ()
 
    Route::resource('evolutions', 'EvolutionController');
 
+   Route::post('evolutions/report', 'EvolutionController@printPdf')
+   ->name('evolutions.report');
+
    Route::post('evolutions/filters', 'EvolutionController@filters')
    ->name('evolutions.filters');
 

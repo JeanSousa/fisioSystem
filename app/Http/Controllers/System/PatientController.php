@@ -101,19 +101,6 @@ class PatientController extends Controller
     {
         $patient = $this->patientService->findPatientById($id);
 
-        $phones = $this->phoneService->findPhoneByPacient($patient->id);
-
-        $address = $this->addressService->findAddressByPacient($patient->id);
-
-        $patient->phone = $phones->phone;
-        $patient->mobile_phone = $phones->mobile_phone;
-        $patient->street = $address->street;
-        $patient->number = $address->number;
-        $patient->cep = $address->cep;
-        $patient->neighborhood = $address->neighborhood;
-        $patient->city = $address->city;
-        $patient->state = $address->state;
-
         return view('app.patients.edit', compact('patient'));
     }
 

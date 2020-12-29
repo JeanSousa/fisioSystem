@@ -7,7 +7,9 @@ use App\Http\Requests\RequestEvolution;
 use App\Http\Requests\RequestEvolutionEdit;
 use App\Services\EvolutionService;
 use App\Services\PatientService;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class EvolutionController extends Controller
 {
@@ -139,5 +141,24 @@ class EvolutionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function printPdf(Request $request)
+    {
+        $evolutions = $this->evolutionService
+        ->findEvolutionByPatientAndDate(
+          $request->report_patient_id,
+          $request->report_initial_date,
+          $request->report_final_date
+        );
+
+        $evolutions->patient = $this->patientService
+        ->findPatientById($request->report_patient_id);
+
+       // dd($evolutions);
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('app.evolution.report', compact('evolutions'));
+        return $pdf->download('Relatório Evoluções.pdf');
     }
 }
