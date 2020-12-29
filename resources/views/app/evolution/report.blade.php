@@ -7,49 +7,67 @@
     <title>Document</title>
     <style>
         td{
-           margin-left: 5px;
+           padding: 5px;
+        }
+
+        th {
+            padding: 10px;
         }
     </style>
     
 </head>
 <body>
-    <h1 style="text-align: center">
-        Relatório de Evolução
-    </h1>
+    <h2 style="text-align: justify"> 
+        <img src="{{asset('storage/reports/logo_report.png')}}" 
+        style="width: 150px; height: 100px; margin-button: - 20px" >
+        
+        Relatório de Evolução do Paciente
+        
+    </h2>
+   
     <h3 style="text-align: justify">
-        Fisioterapeuta: Nicole Evene de Freitas Sousa
+        Fisioterapeuta: {{ucwords(auth()->user()->name)}} &nbsp;&nbsp;
+        Crefito: {{ucwords(auth()->user()->crefito)}}
     </h3>
     <h3 style="text-align: justify">
-        Crefito: 123456
+        Paciente: {{ucwords($evolutions->patient->name)}}
     </h3>
     
-        <table cellspacing=0 style="border-collapse:collapse;"> 
-            <tr style="width:0*;font-family:Verdana;font-size:small;font-variant:small-caps;">
-              <th colspan="3">
-                <h3 style="text-align: justify">Paciente: Amalia De Sousa</h3>
-              </th>
-            </tr>     
+    
+    @foreach ($evolutions as $evolution)      
+        <table cellspacing=0 style="border-collapse:collapse;">    
 			<tr style="width:0*;font-family:Verdana;font-size:small;font-variant:small-caps;">           
-				<th style="border:grey dashed 1px;"> Saturação O2</th>           		
-				<th style="border:grey dashed 1px;"> P.A Inicial</th>           
-                <th style="border:grey dashed 1px;"> P.A Final</th>  
+				<th style="border:grey dashed 1px;"> Saturação O<sub>2</sub></th>           		
+				<th style="border:grey dashed 1px;"> Pressão Arterial Inicial</th>           
+                <th style="border:grey dashed 1px;"> Pressão Arterial Final</th>  
                 <th style="border:grey dashed 1px;"> Data Atendimento</th>                         
-			</tr>        
+            </tr>  
 			<tr>           
-                <td style="border:grey dashed 1px;">Total Sales</td>       
-				<td style="border:grey dashed 1px;">Total Sales</td>                            
-                <td style="border:grey dashed 1px;">Total Sales</td>
-                <td style="border:grey dashed 1px;">Total Sales</td>              
+                <td style="border:grey dashed 1px;">
+                    {{$evolution->o2_saturation}}
+                </td> 
+                <td style="border:grey dashed 1px;">
+                    {{$evolution->initial_blood_pressure}}
+                </td> 
+                <td style="border:grey dashed 1px;">
+                    {{$evolution->final_blood_pressure}}
+                </td> 
+                <td style="border:grey dashed 1px;">
+                    {{$evolution->evolution_date}}
+                </td>              
             </tr>
             <tr>
                 <td style="border:grey dashed 1px;">Observação:</td>
                 <td style="border:grey dashed 1px;" colspan="3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Sed harum vel dolore, unde ab earum illo molestiae et eaque aliquid 
-                    laudantium possimus eligendi quos facere magni magnam id consectetur 
-                    excepturi.</td>
+                {{$evolution->observation}}
+                </td>
             </tr>
-		</table> 
+        </table> 
+        <br>
+    @endforeach
+    <br>
+    <p>______________________________________</p>
+    <p>Fisioterapeuta: {{ucwords(auth()->user()->name)}}</p>
 </body>
 </html>
 

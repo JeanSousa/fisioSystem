@@ -155,8 +155,6 @@ class EvolutionController extends Controller
         $evolutions->patient = $this->patientService
         ->findPatientById($request->report_patient_id);
 
-       // dd($evolutions);
-
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('app.evolution.report', compact('evolutions'));
         return $pdf->download('Relatório Evoluções.pdf');
