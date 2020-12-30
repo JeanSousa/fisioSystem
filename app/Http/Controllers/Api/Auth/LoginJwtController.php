@@ -17,6 +17,8 @@ class LoginJwtController extends Controller
     { 
         $credentials = $request->all('email', 'password');
 
+        //o helper auth traz por default uma instancia do guard web no entanto
+        //peço para trazer api, o attempt tenta logar e se conseguir traz o token
         if (! $token = auth('api')->attempt($credentials)) {
            
             $message = new ApiMessages('Unauthorized');

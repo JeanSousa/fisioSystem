@@ -53,7 +53,7 @@
                     {{$evolution->final_blood_pressure}}
                 </td> 
                 <td style="border:grey dashed 1px;">
-                    {{$evolution->evolution_date}}
+                    {{\Carbon\Carbon::parse($evolution->evolution_date)->format('d/m/Y')}}
                 </td>              
             </tr>
             <tr>

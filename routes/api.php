@@ -28,9 +28,14 @@ Route::namespace('Api')->prefix('v1')->group(function () {
 
     Route::post('login', 'Auth\LoginJwtController@login')->name('login');
 
-    Route::resource('/patients', 'PatientController')->middleware('auth.basic');
+    Route::group(['middleware' => 'jwt.auth'], function(){
 
-    Route::resource('users', 'UserController');
+        Route::resource('/patients', 'PatientController');
+    
+        Route::resource('users', 'UserController');
+
+    });
+
  
 });
 

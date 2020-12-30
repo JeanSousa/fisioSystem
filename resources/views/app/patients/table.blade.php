@@ -32,7 +32,7 @@
             <tr role="row" class="odd">
               <td>{{ucwords($patient->name)}}</td>
               <td>{{$patient->cpf}}</td>
-              <td>{{$patient->birth_date}}</td>
+              <td>{{\Carbon\Carbon::parse($patient->birth_date)->format('d / m / Y')}}</td>
               <td>{{$patient->email}}</td>
               <td>
                 <div class="btn-group">
