@@ -28,8 +28,12 @@ Route::namespace('Api')->prefix('v1')->group(function () {
 
     Route::post('login', 'Auth\LoginJwtController@login')->name('login');
 
-    Route::group(['middleware' => 'jwt.auth'], function(){
+    Route::get('logout', 'Auth\LoginJwtController@logout')->name('logout');
 
+    Route::get('refresh', 'Auth\LoginJwtController@refresh')->name('refresh');
+
+    Route::group(['middleware' => 'jwt.auth'], function(){
+        //CORRIGIR ROTA POIS PEGO PACIENTES POR USUARIO
         Route::resource('/patients', 'PatientController');
     
         Route::resource('users', 'UserController');
