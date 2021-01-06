@@ -26,11 +26,12 @@ class PatientService
     }
 
 
-    public function findPatientById($id)
+    public function findPatientById($id, $user_id)
     {
         try {
             $patient = $this->patientRepository
             ->with('address')->with('phone')
+            ->where('user_id', $user_id)
             ->find($id);
 
             return $patient;
@@ -78,10 +79,13 @@ class PatientService
     }
 
 
-    public function deletePatient($idPatient)
+    public function deletePatient($idPatient, $user_id)
     {
         try {
-            $this->patientRepository->delete($idPatient);
+            $this->patientRepository
+            ->where('user_id', $user_id)
+            ->delete($idPatient);
+            
         } catch (\Exception $e) {
             return $e->getMessage();
         }

@@ -153,7 +153,10 @@ class EvolutionController extends Controller
         );
 
         $evolutions->patient = $this->patientService
-        ->findPatientById($request->report_patient_id);
+        ->findPatientById(
+            $request->report_patient_id,
+            auth()->user()->id
+        );
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('app.evolution.report', compact('evolutions'));

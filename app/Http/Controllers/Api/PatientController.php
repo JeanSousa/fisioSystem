@@ -36,7 +36,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = $this->patientService->findAllPatients(auth()->user()->id);
+        $patients = $this->patientService->findAllPatients(auth('api')->user()->id);
             
         return new PatientCollection($patients);
     }
@@ -69,20 +69,10 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        $patient = $this->patientService->findPatientById($id);
-
-        $phones = $this->phoneService->findPhoneByPacient($patient->id);
-
-        $address = $this->addressService->findAddressByPacient($patient->id);
-
-        $patient->phone = $phones->phone;
-        $patient->mobile_phone = $phones->mobile_phone;
-        $patient->street = $address->street;
-        $patient->number = $address->number;
-        $patient->cep = $address->cep;
-        $patient->neighborhood = $address->neighborhood;
-        $patient->city = $address->city;
-        $patient->state = $address->state;
+        $patient = $this->patientService->findPatientById(
+            $id,
+            auth('api')->user()->id
+        );
 
         return new PatientResource($patient);
     }
@@ -115,7 +105,10 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        $this->patientService->deletePatient($id);
+        $this->patientService->deletePatient(
+            $id,
+            auth('api')->user()->id
+        );
 
         return response()->json(['message' => 'Paciente excluído com sucesso!']);
     }

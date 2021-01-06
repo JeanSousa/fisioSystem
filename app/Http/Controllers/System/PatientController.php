@@ -99,7 +99,10 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        $patient = $this->patientService->findPatientById($id);
+        $patient = $this->patientService->findPatientById(
+            $id, 
+            auth()->user()->id
+        );
 
         return view('app.patients.edit', compact('patient'));
     }
@@ -136,7 +139,10 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        $this->patientService->deletePatient($id);
+        $this->patientService->deletePatient(
+            $id, 
+            auth()->user()->id
+        );
 
         return redirect(route('system.patients.index'));
     }
