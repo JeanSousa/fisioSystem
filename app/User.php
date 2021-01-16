@@ -11,6 +11,11 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
+    //appends links permite que envie links dinamicos na api
+    //vai fazer buscar a function getlinkAttribute dentro do model e retornar junto a collection
+    //o underline mostra que é hipermídia
+    protected $appends = ['_links'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -62,5 +67,14 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+
+    public function getLinksAttribute()
+    {
+        return [
+           'href' => route('users.show', $this->id),
+           'rel' => 'Users'
+        ];
     }
 }
