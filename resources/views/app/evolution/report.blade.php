@@ -18,8 +18,8 @@
 </head>
 <body>
     <h2 style="text-align: justify"> 
-        <img src="{{asset('storage/reports/logo_report.png')}}" 
-        style="width: 150px; height: 100px; margin-button: - 20px" >
+        <img src="{{asset('storage/reports/logo_report.jpeg')}}" 
+        style="width: 100px; height: 120px; margin-button: - 20px" >
         
         Relatório de Evolução do Paciente
         

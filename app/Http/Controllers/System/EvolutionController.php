@@ -52,7 +52,7 @@ class EvolutionController extends Controller
         $request->initial_date,  $request->final_date);
 
         $evolutions->patient = $this->patientService
-        ->findPatientById($request->patient_id);
+        ->findPatientById($request->patient_id, auth()->user()->id);
 
         return $this->index($evolutions);
             
@@ -108,7 +108,7 @@ class EvolutionController extends Controller
         $evolution = $this->evolutionService->findEvolutionById($id);
 
         $evolution->patient = $this->patientService
-        ->findPatientById($evolution->patient_id);
+        ->findPatientById($evolution->patient_id, auth()->user()->id);
 
         return view('app.evolution.edit', compact('evolution')); 
     }
