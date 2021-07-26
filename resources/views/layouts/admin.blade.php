@@ -18,6 +18,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="/css/app.css">
 </head>
 
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "b4a6a684-c630-433d-b768-0db83200bae1",
+    });
+  });
+</script>
+
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
 
