@@ -26,6 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       appId: "b4a6a684-c630-433d-b768-0db83200bae1",
     });
   });
+  
 </script>
 
 <body class="hold-transition sidebar-mini">

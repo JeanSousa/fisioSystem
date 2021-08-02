@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Api\ApiMessages;
+use App\Jobs\SendNotification;
 use App\Repositories\Contracts\PatientRepository;
 use App\Services\ServiceResponse\ServiceResponse;
-use OneSignal;
 
 class PatientService
 {
@@ -60,14 +60,15 @@ class PatientService
 
         //  SendEmailJob::dispatch($contact, $auth)->delay(now()->addSeconds('15'));
 
-        OneSignal::sendNotificationToUser(
-            "Some Message",
-            "13c5637a-4bc2-4c57-8c24-e829217ab1f9",
-            $url = null,
-            $data = null,
-            $buttons = null,
-            $schedule = null
-        );
+        $userId = "13c5637a-4bc2-4c57-8c24-e829217ab1f9";
+        $params = [];
+        $params['include_player_ids'] = [$userId];
+        $contents = [
+        "en" => "Usuário cadastrado com sucesso!",
+        ];
+        $params['contents'] = $contents;
+
+        SendNotification::dispatch($params)->delay(now()->addSeconds('5'));
     }
 
 
@@ -90,11 +91,13 @@ class PatientService
     public function deletePatient($idPatient, $user_id)
     {
         try {
-            $this->patientRepository
+            $patient = $this->patientRepository
             ->where('user_id', $user_id)
-            ->delete($idPatient);
-            
+            ->where('id', $idPatient);
+
+            $patient->delete();
         } catch (\Exception $e) {
+            dd($e);
             return $e->getMessage();
         }
     }
