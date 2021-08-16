@@ -60,15 +60,8 @@ class PatientService
 
         //  SendEmailJob::dispatch($contact, $auth)->delay(now()->addSeconds('15'));
 
-        $userId = "13c5637a-4bc2-4c57-8c24-e829217ab1f9";
-        $params = [];
-        $params['include_player_ids'] = [$userId];
-        $contents = [
-        "en" => "Usuário cadastrado com sucesso!",
-        ];
-        $params['contents'] = $contents;
 
-        SendNotification::dispatch($params)->delay(now()->addSeconds('5'));
+        SendNotification::dispatch()->delay(now()->addSeconds('5'));
     }
 
 
