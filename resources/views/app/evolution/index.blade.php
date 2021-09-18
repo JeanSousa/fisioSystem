@@ -45,7 +45,7 @@
           </div>
  
             
-              <div class="card-footer" style="display: block;">
+              <div class="card-footer" style="display: flex;">
                   <button type="submit" class="btn btn-info">Filtrar</button>
                 </form>
 
@@ -60,7 +60,7 @@
                      <input type="hidden" name="report_final_date" 
                       id="report_final_date" value="">
 
-                     <button type="submit" class="btn btn-danger" style="margin-top: 10px">
+                     <button type="submit" class="btn btn-danger ml-2">
                        <i class="fa fa-file-pdf"></i>
                        Exportar
                      </button>
