@@ -33,5 +33,32 @@
 </table>
 
 ## Como rodar a aplicação
-1)
+#### Na raiz do projeto rode:
+1) docker-compose up -d
+2) docker exec -it fisiosystem_app_1 bash
+3) chmod -R 777 storage
+4) chmod -R 775 bootstrap/cache
+5) composer install --no-scripts
+6) cp .env.example .env
+7) php artisan key:generate
+8) php artisan migrate
+9) php artisan storage:link 
+
+### Endereços e portas
+
+<table>
+  <tr>
+      <td>Projeto</td>
+      <td>Banco de Dados</td>
+  </tr>
+  <tr>
+      <td>http://localhost:8081/</td>
+      <td>porta: 3309, user: root, senha vazia</td>
+  </tr>
+</table>
+
+
+
+
+
 
