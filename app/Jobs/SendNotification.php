@@ -29,8 +29,8 @@ class SendNotification implements ShouldQueue
      * @return void
      */
     public function handle()
-    {
-        $userId = "13c5637a-4bc2-4c57-8c24-e829217ab1f9";
+    {              
+        $userId = "f1bb4de2-a038-467e-a036-3b6cc4af715f";
         $params = [];
         $params['include_player_ids'] = [$userId];
         $contents = [
