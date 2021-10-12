@@ -1,21 +1,35 @@
-# Laravel 7 with AdminLTE 3
+<h1> Fisiosystem </h1>
 
-## How to use
+> Status: Desenvolvimento ⚠️
 
-- Clone the repository with __git clone__
-- Copy __.env.example__ file to __.env__
-- Edit database credentials in __.env__
-- Run __composer install__
-- Run __php artisan key:generate__
-- Run __php artisan migrate__
-- Run __php artisan serve__ (if you want to use other port add __--port=90__)
-- You can __register__ by clicking on top-right
+### O Fisiosystem é uma aplicação web para gestão de pacientes da área de fisioterapia
 
-## License
+### Funcionalidades 
++ Cadastro de Pacientes
++ Cadastro de Evolução de Pacientes
++ Relatório de Evoluçao de Pacientes
 
-Feel free to use and re-use any way you want.
+### Funcionalidades em desenvolvimento
++ Cadastro de Prontuário
++ Agendamento de pacientes 
 
-## More
+## Tecnologias Utilizadas
 
-- Check my YouTube channel [Dot Coding](https://www.youtube.com/channel/UCYobBTcVkUvIqQW3sSTGarg).
-- Feel free to send me an e-mail for support [dot.bol.lp@gmail.com](mailto:dot.bol.lp@gmail.com).
+<table>
+  <tr>
+      <td>PHP</td>
+      <td>Laravel</td>
+      <td>Composer</td>
+      <td>Mysql</td>
+  </tr>
+  <tr>
+      <td>7.3</td>
+      <td>7.*</td>
+      <td>2.1.8</td>
+      <td>5.7</td>
+  </tr>
+</table>
+
+## Como rodar a aplicação
+1)
+
