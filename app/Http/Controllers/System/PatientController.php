@@ -73,8 +73,6 @@ class PatientController extends Controller
 
         $data = $request->all();
 
-        dd($data);
-
         $request->hasFile('photo') ? $data = $this->uploadImage($data, $request) : null;
 
         $this->patientService->createPatientByUser($data);
