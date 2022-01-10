@@ -25,10 +25,10 @@ class PatientController extends Controller
      * Construtor
      */
     public function __construct(
-        PatientService $patientService, 
+        PatientService $patientService,
         PhoneService $phoneService,
         AddressService $addressService
-       
+
     ) {
         $this->patientService = $patientService;
 
@@ -69,9 +69,11 @@ class PatientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(RequestPatient $request)
-    {  
+    {
 
         $data = $request->all();
+
+        dd($data);
 
         $request->hasFile('photo') ? $data = $this->uploadImage($data, $request) : null;
 
@@ -100,7 +102,7 @@ class PatientController extends Controller
     public function edit($id)
     {
         $patient = $this->patientService->findPatientById(
-            $id, 
+            $id,
             auth()->user()->id
         );
 
@@ -140,7 +142,7 @@ class PatientController extends Controller
     public function destroy($id)
     {
         $this->patientService->deletePatient(
-            $id, 
+            $id,
             auth()->user()->id
         );
 
