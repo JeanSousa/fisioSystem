@@ -53,9 +53,11 @@
   </tr>
   <tr>
       <td>http://localhost:8081/</td>
-      <td>porta: 3309, user: root, senha vazia</td>
+      <td>name: fisiosystem, porta: 3309, user: root, senha vazia</td>
   </tr>
 </table>
+
+Para registrar-se acesse a rota /register
 
 
 
