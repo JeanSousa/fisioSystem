@@ -6,10 +6,11 @@ use App\Models\Patient;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
     //appends links permite que envie links dinamicos na api
     //vai fazer buscar a function getlinkAttribute dentro do model e retornar junto a collection
